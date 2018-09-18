@@ -3,6 +3,8 @@ import logo from './logo.svg';
 import './App.css';
 import SignUp from './Screens/Authentication/SignUp.jsx';
 import Login from './Screens/Authentication/Login.jsx';
+import Test from './Screens/Authentication/Test.jsx';
+import LogOut from './Screens/Authentication/LogOut.jsx';
 
 class App extends Component {
   constructor() {
@@ -22,6 +24,7 @@ class App extends Component {
     this.loginEmail = this.loginEmail.bind(this);
     this.loginPassword = this.loginPassword.bind(this);
     this.loginButton = this.loginButton.bind(this);
+    this.logOut = this.logOut.bind(this);
   }
 
 
@@ -83,7 +86,10 @@ class App extends Component {
       &&
       loginPassword === password
       ?
-      (alert("succeess"))
+      (this.setState({
+        currentUser : true,
+      }),
+        alert("succeess"))
       :
       (console.log("error"));
     this.setState({
@@ -97,18 +103,33 @@ class App extends Component {
     // console.log(password);
   }
 
+// logout button
 
+  logOut(){
+    this.setState({
+      currentUser: false,
+    })
+  }
   render() {
+    const {currentUser , logOut} = this.state;
     return (
       <div className="App">
+       {currentUser && <LogOut state={this.state}  logOut={this.logOut}   />   }
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
-          <SignUp signUpName={this.signUpName} signUpEmail={this.signUpEmail} signUpPassword={this.signUpPassword} submitData={this.submitData} state={this.state} />
-
+       
+       
+        { !currentUser &&  <SignUp signUpName={this.signUpName} signUpEmail={this.signUpEmail} 
+        signUpPassword={this.signUpPassword} submitData={this.submitData} state={this.state} />}
         </header>
         <h3>Login Form </h3>
-        <Login loginEmail={this.loginEmail} loginPassword={this.loginPassword} loginButton={this.loginButton} state={this.state} />
+        
+        { !currentUser && <Login loginEmail={this.loginEmail} loginPassword={this.loginPassword} 
+        loginButton={this.loginButton} state={this.state} /> 
+        }
+       
+         {currentUser &&  <Test/>}
       </div>
 
     );
