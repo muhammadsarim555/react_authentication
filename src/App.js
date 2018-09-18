@@ -43,6 +43,10 @@ class App extends Component {
     localStorage.setItem("password", this.state.password);
     // console.log(this.state.email);
     // console.log(this.state.password);
+    this.setState({
+      email: '',
+      password: '',
+    })
   }
 
   // login work for users
@@ -70,7 +74,10 @@ class App extends Component {
       (alert("succeess"))
       :
       (console.log("error"));
-
+      this.setState({
+        loginEmail: '',
+        loginPassword: '',
+      })
     // console.log(this.state.loginEmail);
 
 
@@ -85,11 +92,11 @@ class App extends Component {
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
-          <SignUp signUpEmail={this.signUpEmail} signUpPassword={this.signUpPassword} submitData={this.submitData} />
+          <SignUp signUpEmail={this.signUpEmail} signUpPassword={this.signUpPassword} submitData={this.submitData} state={this.state} />
 
         </header>
         <h3>Login Form </h3>
-        <Login loginEmail={this.loginEmail} loginPassword={this.loginPassword} loginButton={this.loginButton} />
+        <Login loginEmail={this.loginEmail} loginPassword={this.loginPassword} loginButton={this.loginButton} state={this.state} />
       </div>
 
     );

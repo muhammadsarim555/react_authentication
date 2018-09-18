@@ -8,11 +8,12 @@ class SignUp extends Component {
  
   
   gettingInput(){
-      const {signUpEmail , signUpPassword , submitData } = this.props;
+      const {signUpEmail , signUpPassword , submitData, state } = this.props;
+      // console.log(state.email);
     return(
       <div>
-      <input type="email" onChange={signUpEmail }  />
-      <input type="password" onChange={signUpPassword } />
+      <input type="email" value={state.email} onChange={signUpEmail }  />
+      <input type="password" value={state.password} onChange={signUpPassword } />
       <button onClick={submitData}> Submit </button>
         </div>
     )

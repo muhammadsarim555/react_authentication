@@ -8,11 +8,11 @@ class Login extends Component {
  
   
   gettingInput(){
-      const {loginEmail , loginPassword , loginButton } = this.props;
+      const {loginEmail , loginPassword , loginButton , state } = this.props;
     return(
       <div>
-      <input type="email" onChange={loginEmail }  />
-      <input type="password" onChange={loginPassword } />
+      <input type="email" value={state.loginEmail} onChange={loginEmail }  />
+      <input type="password" value={state.loginPassword} onChange={loginPassword } />
       <button onClick={loginButton}> Login</button>
         </div>
     )
