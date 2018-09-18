@@ -7,8 +7,8 @@ import Login from './Screens/Authentication/Login';
 class App extends Component {
   constructor() {
     super()
-    this.state ={
-      email : '',
+    this.state = {
+      email: '',
       password: '',
       loginEmail: '',
       loginPassword: '',
@@ -24,42 +24,58 @@ class App extends Component {
 
 
   // signup component working update state via parameter
-  
-  signUpEmail(e){
-    this.setState({
-      email : e.target.value,
-    })
-  }
-  
-  signUpPassword(e){
-    this.setState({
-      password:e.target.value,
-    })
-  }
-  
-  submitData(){
 
-    localStorage.setItem("email" , this.state.email);
-    localStorage.setItem("password" , this.state.password);
+  signUpEmail(e) {
+    this.setState({
+      email: e.target.value,
+    })
+  }
+
+  signUpPassword(e) {
+    this.setState({
+      password: e.target.value,
+    })
+  }
+
+  submitData() {
+
+    localStorage.setItem("email", this.state.email);
+    localStorage.setItem("password", this.state.password);
+    // console.log(this.state.email);
+    // console.log(this.state.password);
   }
 
   // login work for users
 
-
-  loginEmail(e){
+  loginEmail(e) {
     this.setState({
-      loginEmail : e.target.value,
+      loginEmail: e.target.value,
     })
   }
 
-  loginPassword(e){
+  loginPassword(e) {
     this.setState({
       loginPassword: e.target.value,
     })
   }
 
-  loginButton(){
+  loginButton() {
+    const { loginEmail, loginPassword } = this.state;
+    const email = localStorage.getItem('email');
+    const password = localStorage.getItem('password');
+    loginEmail === email
+      &&
+      loginPassword === password
+      ?
+      (alert("succeess"))
+      :
+      (console.log("error"));
 
+    // console.log(this.state.loginEmail);
+
+
+    // console.log(email);
+    // console.log(password);
   }
 
 
@@ -69,11 +85,11 @@ class App extends Component {
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
-          <SignUp signUpEmail={this.signUpEmail} signUpPassword={this.signUpPassword} submitData={this.submitData}/>
+          <SignUp signUpEmail={this.signUpEmail} signUpPassword={this.signUpPassword} submitData={this.submitData} />
 
         </header>
-         <h3>Login Form </h3>
-          <Login loginEmail={this.loginEmail} loginPassword={this.loginPassword} loginButton={this.loginButton} />
+        <h3>Login Form </h3>
+        <Login loginEmail={this.loginEmail} loginPassword={this.loginPassword} loginButton={this.loginButton} />
       </div>
 
     );
