@@ -8,12 +8,14 @@ class App extends Component {
   constructor() {
     super()
     this.state = {
+      name: '',
       email: '',
       password: '',
       loginEmail: '',
       loginPassword: '',
       currentUser: false,
     };
+    this.signUpName = this.signUpName.bind(this);
     this.signUpEmail = this.signUpEmail.bind(this);
     this.signUpPassword = this.signUpPassword.bind(this);
     this.submitData = this.submitData.bind(this);
@@ -24,6 +26,12 @@ class App extends Component {
 
 
   // signup component working update state via parameter
+
+  signUpName(e) {
+    this.setState({
+      name: e.target.value,
+    })
+  }
 
   signUpEmail(e) {
     this.setState({
@@ -38,14 +46,18 @@ class App extends Component {
   }
 
   submitData() {
-
-    localStorage.setItem("email", this.state.email);
-    localStorage.setItem("password", this.state.password);
+    const {name , email , password} = this.state;
+    
+    localStorage.setItem("name", name);
+    localStorage.setItem("email", email);
+    localStorage.setItem("password", password);
+    
     // console.log(this.state.email);
     // console.log(this.state.password);
     this.setState({
       email: '',
       password: '',
+      name: '',
     })
   }
 
@@ -92,7 +104,7 @@ class App extends Component {
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
-          <SignUp signUpEmail={this.signUpEmail} signUpPassword={this.signUpPassword} submitData={this.submitData} state={this.state} />
+          <SignUp signUpName={this.signUpName} signUpEmail={this.signUpEmail} signUpPassword={this.signUpPassword} submitData={this.submitData} state={this.state} />
 
         </header>
         <h3>Login Form </h3>
