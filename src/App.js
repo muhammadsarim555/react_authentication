@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import SignUp from './Screens/Authentication/SignUp';
-import Login from './Screens/Authentication/Login';
+import SignUp from './Screens/Authentication/SignUp.jsx';
+import Login from './Screens/Authentication/Login.jsx';
 
 class App extends Component {
   constructor() {
@@ -46,12 +46,12 @@ class App extends Component {
   }
 
   submitData() {
-    const {name , email , password} = this.state;
-    
+    const { name, email, password } = this.state;
+
     localStorage.setItem("name", name);
     localStorage.setItem("email", email);
     localStorage.setItem("password", password);
-    
+
     // console.log(this.state.email);
     // console.log(this.state.password);
     this.setState({
@@ -86,10 +86,10 @@ class App extends Component {
       (alert("succeess"))
       :
       (console.log("error"));
-      this.setState({
-        loginEmail: '',
-        loginPassword: '',
-      })
+    this.setState({
+      loginEmail: '',
+      loginPassword: '',
+    })
     // console.log(this.state.loginEmail);
 
 
